@@ -23,6 +23,7 @@
 </body>
         <link rel="stylesheet" href="css/bootstrap.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
@@ -56,12 +57,14 @@
             </div>
         </div>
      <script>
+            $(document).ready(function () {
+
+                $('.options').hide().fadeIn(900);
+            });
+
             $('#join-private').click(function(){
                     $(this).hide();
                     $('#join-select').removeClass('hide');
-                    $('#join-select').fadeIn('slow', function(){
-
-                    });
             });
      </script>
     </body>
