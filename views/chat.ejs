@@ -69,19 +69,19 @@
 <script src="javascripts/main.js"></script>
 <script>
 $(document).ready(function () {
+    var currentmargin = $('#editor').css('margin-top').replace('px','');
+    updateMargin(currentmargin);
+
 
 $(window).resize(function() {
-    var width = $(window).width();
-    var currentmargin = $('#editor').css('margin-top').replace('px','');
-    console.log(currentmargin);
-    if(width < 1425){
-
-        var newmargin = Number(currentmargin)+((1425-width)*.0001);
-        console.log(newmargin);
-        $('#editor').css('margin-top',newmargin + 'px');
-    }
-    //$('#editor').css('margin-top',width + '%')
+    updateMargin(488.0625 );
 });
+
+function updateMargin(currentmargin){
+    var width = $(window).width();
+    var newmargin = Number(currentmargin)+((1425-width)*.3);
+    $('#editor').css('margin-top',newmargin + 'px');
+}
 
 });
 </script>
