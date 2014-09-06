@@ -9,7 +9,9 @@ var server = require('http').Server(app);
 
 io = require('socket.io')(server);
 
-server.listen(3000);
+var PORT = process.env.PORT || 3000;
+
+server.listen(PORT);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
