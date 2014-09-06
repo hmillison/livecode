@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Live Code</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -104,7 +104,9 @@
                                         data-parent="#sidebar">
                                         <i class="icon-file-text"></i> Copy URL
                                     </a>
-
+                                    <a id="email-button" class="list-group-item" data-parent="#sidebar">
+                                        <i class="icon-file-text"></i> Send Invite via Email
+                                    </a>
 
 
 
@@ -225,6 +227,16 @@ $(document).ready(function () {
     }
 
     $('#dl-button').click(saveTextAsFile);
+
+    $('#email-button').click(function(){
+        var data = {
+            fromEmail: prompt('Please enter your email'), 
+            toEmail: prompt('Enter the email you want to send the link to'),
+            url: window.location.href
+        };
+        console.log(data);
+        socket.emit('sendEmail', data);
+    });
     
     window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
 

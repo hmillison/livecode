@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Parse = require('parse').Parse;
-
+var sendgrid  = require('sendgrid')('timotius02', 'timotius2');
 
 Parse.initialize("Z8S2abxIxh5UXd3m8CNncRGbn97pRXYSi4EQ5qnR", "G4U45T8R74bMLLdcB824h3WDJwV1h5ORjrewJtoS");
 
@@ -30,6 +30,19 @@ router.get('/chat', function(req, res) {
 			nsp.on('connection', function(socket){
 			  	console.log('someone connected');
 			  	var query = new Parse.Query(Rooms);
+
+			  	socket.on('sendEmail', function (data) {
+				    console.log('hello');
+				    sendgrid.send({
+				        to: data.toEmail,
+				        from: data.fromEmail,
+				        subject: 'Live Code Session Invitation',
+				        text: 'Your have an invitation to a Live Code Session: \n' + data.url
+				    }, function(err, json) {
+				        if (err) { return console.error(err); }
+				        console.log(json);
+				    });  
+				});
 
 			  	socket.on('editorChange', function (data) {
 				  	query.get(room.id, {
@@ -66,6 +79,19 @@ router.get('/chat', function(req, res) {
 				nsp.on('connection', function(socket){
 				  	console.log('someone connected');
 				  	var query = new Parse.Query(Rooms);
+
+				  	socket.on('sendEmail', function (data) {
+					    console.log('hello');
+					    sendgrid.send({
+					        to: data.toEmail,
+					        from: data.fromEmail,
+					        subject: 'Live Code Session Invitation',
+					        text: 'Your have an invitation to a Live Code Session: \n' + data.url
+					    }, function(err, json) {
+					        if (err) { return console.error(err); }
+					        console.log(json);
+					    });  
+					});
 
 				    socket.on('editorChange', function (data) {
 				    	query.get(room.id, {

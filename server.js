@@ -62,14 +62,4 @@ app.use(function(err, req, res, next) {
     });
 });
 
-// io.on('connection', function (socket) {
-//     console.log('new user');
-
-
-//     socket.on('editorChange', function (data) {
-//         socket.broadcast.emit('editorCallback', data);
-//     });
-// });
-
-
 module.exports = app;
