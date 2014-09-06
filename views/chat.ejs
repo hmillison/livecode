@@ -14,8 +14,25 @@
     <script src="http://simplewebrtc.com/latest.js"></script> 
     <script src="javascripts/ZeroClipboard.js"></script>
     <script src="javascripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var endings = {
+        c: '.cpp', 
+        css: '.css', 
+        html: '.html', 
+        Java: '.java',
+        javascript: '.js',
+        php: '.php',
+        python: '.py',
+        ruby: '.rb' 
+    };
+    var ending = '.js';
 
-        
+    function selectLang(lang){
+        console.log(lang);
+        ending = endings[lang];
+    }
+    </script>
+
 </head>
 <body>
     <nav class="navbar navbar-default navbar-livecode" role="navigation">
@@ -50,34 +67,35 @@
 
                                     <div id="lang-select" class="list-group subitem collapse">    
 
-                                        <a href="#" id="C" class="list-group-item">
+                                        <a  id="C"  onclick="selectLang('c');" class="list-group-item">
                                             C/C++
                                         </a>
-                                        <a href="#" id="CSS" class="list-group-item">
+                                        <a id="CSS" onclick="selectLang('css');" class="list-group-item">
                                             CSS
                                         </a>
-                                        <a href="#" id="HTML" class="list-group-item">
+                                        <a  id="HTML" onclick="selectLang('html');" class="list-group-item">
                                             HTML
                                         </a>
-                                        <a href="#" id="Java" class="list-group-item">
+                                        <a  id="Java" onclick="selectLang('Java');" class="list-group-item">
                                             Java
                                         </a>
-                                        <a href="#" id="Javascript" class="list-group-item">
+                                        <a  id="Javascript" onclick="selectLang('javascript');" class="list-group-item">
                                             Javascript
                                         </a>
-                                        <a href="#" id="PHP" class="list-group-item">
+                                        <a  id="PHP" onclick="selectLang('php');" class="list-group-item">
                                             PHP
                                         </a>
-                                        <a href="#" id="Python" class="list-group-item">
+                                        <a  id="Python" onclick="selectLang('python');"
+                                        class="list-group-item">
                                             Python
                                         </a>
-                                        <a href="#" id="Ruby" class="list-group-item">
+                                        <a  id="Ruby" onclick="selectLang('ruby');" class="list-group-item">
                                             Ruby
                                         </a>
 
                                     </div>  
 
-                                    <a href="#articles" class="list-group-item"  data-parent="#sidebar">
+                                    <a href="#articles" id='dl-button'class="list-group-item"  data-parent="#sidebar">
                                         <i class="icon-file-text"></i> Download
                                         
                                     </a>
@@ -186,8 +204,31 @@ $(document).ready(function () {
     $('body').css('height',Number(bodyheight)+Number(editorheight)+'px');
     $('#copy-button').attr('data-clipboard-text', location.href);
 
+    var destroyClickedElement = function(event){
+        document.body.removeChild(event.target);
+    }
+    var saveTextAsFile = function(){      
+        var textToWrite = editor.getValue();
+        var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+        var fileName = prompt("Please enter file name to save as");
+
+        var fileNameToSaveAs = fileName + ending;
+        var downloadLink = document.createElement("a");
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "My Hidden Link";
+        window.URL = window.URL || window.webkitURL;
+              
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+    }
+
+    $('#dl-button').click(saveTextAsFile);
     
     window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
+
 });
 </script>
 
