@@ -62,7 +62,7 @@ router.get('/chat', function(req, res) {
 		    
 		  	},
 		  	error: function(object, error) {
-		  		res.send('Failed to create new object, with error code: ' + error.message);
+		  		res.send('Sorry, this is not a valid room. Please try again!');
 		  	}
 		});
 	}

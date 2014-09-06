@@ -40,7 +40,9 @@ video{
 li #sidebar.list-group #users.list-group.subitem.collapse.in { 
   margin-bottom: 0px; 
 }
-
+#vertical-align-index { 
+margin-top: 10%;
+}
 /* login page */
 .header h1{
   font-size: 50px;
