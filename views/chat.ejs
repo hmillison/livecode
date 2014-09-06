@@ -13,14 +13,15 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://simplewebrtc.com/latest.js"></script> 
     <script src="javascripts/ZeroClipboard.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
 
         
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation">
-        <h2> Live Code </h2>
         <button class="btn" id="copy-button" data-clipboard-text="Copy me!">Copy URL</button>
         <button class="btn" id="dl-button">Download code</button>
+        <a href="/"><h2> Live Code </h2></a>
     </nav>
 
 
@@ -40,9 +41,59 @@
             <div class="row">
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav">
-                            <li>A</li>
-                            <li>B</li>
-                            <li>C</li>
+                            <li>
+                                <div id="sidebar" class="list-group"> 
+
+                                    <a href="#users" class="list-group-item"  id="lang-button" data-parent="#sidebar">
+                                        <i class="icon-group"></i> Select Language
+                                    </a>
+
+                                    <div id="lang-select" class="list-group subitem collapse">    
+
+                                        <a href="#" id="C" class="list-group-item">
+                                            C/C++
+                                        </a>
+                                        <a href="#" id="CSS" class="list-group-item">
+                                            CSS
+                                        </a>
+                                        <a href="#" id="HTML" class="list-group-item">
+                                            HTML
+                                        </a>
+                                        <a href="#" id="Java" class="list-group-item">
+                                            Java
+                                        </a>
+                                        <a href="#" id="Javascript" class="list-group-item">
+                                            Javascript
+                                        </a>
+                                        <a href="#" id="PHP" class="list-group-item">
+                                            PHP
+                                        </a>
+                                        <a href="#" id="Python" class="list-group-item">
+                                            Python
+                                        </a>
+                                        <a href="#" id="Ruby" class="list-group-item">
+                                            Ruby
+                                        </a>
+
+                                    </div>  
+
+                                    <a href="#articles" class="list-group-item"  data-parent="#sidebar">
+                                        <i class="icon-file-text"></i> Download
+                                        
+                                    </a>
+
+                                    <a id="copy-button" data-clipboard-text="Copy me!" class="list-group-item"  
+                                        data-parent="#sidebar">
+                                        <i class="icon-file-text"></i> Copy URL
+                                    </a>
+
+
+
+
+                                </div>
+                            </li>
+                            <li>
+                            </li>
                         </ul>
                     </div>
             </div>
@@ -75,7 +126,6 @@ client.on("ready", function( readyEvent ) {
     });
 });
 
-
 var webrtc = new SimpleWebRTC({
     localVideoEl: 'localVideo',
     remoteVideosEl: 'remotesVideos',
@@ -98,7 +148,7 @@ socket.on('editorCallback', function(data){
 
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
-editor.getSession().setMode("ace/mode/javascript");
+editor.getSession().setMode("ace/mode/css");
 
 editor.getSession().on('change', function(e){
     if(!changing){
@@ -108,7 +158,28 @@ editor.getSession().on('change', function(e){
         socket.emit('editorChange', data);
     }
 });
+
+$('#lang-select').on('click', 'a', function(event){
+    editor.getSession().setMode("ace/mode/"+this.id.toLowerCase());
+    $('#lang-button').html('<i class="icon-group"></i>' + this.id);
+    $('#lang-select').collapse('hide');
+});
+
+$('#sidebar > a').on('click', function (e) {
+    e.preventDefault();
+
+    if(!$(this).hasClass("active")){
+        var lastActive = $(this).closest("#sidebar").children(".active");
+        lastActive.removeClass("active");
+        lastActive.next('div').collapse('hide');
+        $(this).addClass("active");
+        $(this).next('div').collapse('show');
+    }
+
+});
+
 $(document).ready(function () {
+
     window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
     var bodyheight = $('body').css('height').replace('px','');
     var editorheight = $('#editor').css('height').replace('px','');
@@ -136,6 +207,9 @@ $(document).ready(function () {
     }
 
     $('#dl-button').click(saveTextAsFile);
+    
+    window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
+
 });
 </script>
 
