@@ -1,17 +1,28 @@
+
+.navbar > *{
+  color: #fff;
+  padding:1%;
+}
+
 /* Cameras */
 .camera{
 	padding:5px;
 }
 
 .camera-box{
-	height:auto;
-  width:auto;
+	height:310px;
+  width:500px;
 	padding:5px;
 	margin:auto 20px auto 20px;
-	background-color: rgba(170,170,170,0.5);
+	background-color: rgba(170,170,170,0.2);
 }
 
 /* login page */
+.options input{
+  width:30%;
+  margin:auto;
+  text-align:center;
+}
 
 /* code sidebar */
 #wrapper {

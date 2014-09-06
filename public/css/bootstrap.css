@@ -5,6 +5,8 @@
  */
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -232,6 +234,7 @@ th {
   h3 {
     orphans: 3;
     widows: 3;
+    font-family: 'Roboto Slab', serif;
   }
   h2,
   h3 {
@@ -900,7 +903,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #333;
+  color: #fff;
   background:#363636;
 }
 input,
@@ -998,7 +1001,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: inherit;
+  font-family: 'Roboto Slab', serif;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -4094,7 +4097,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default {
   background: #2C3E50;
-  border-bottom: 10px solid;
+  border-bottom: #333 10px solid;
 }
 .navbar-default .navbar-brand {
   color: #777;
