@@ -6,21 +6,6 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-	
-
-	<script type="text/javascript">
-	var webrtc = new SimpleWebRTC({
-	  localVideoEl: 'localVideo',
-	  remoteVideosEl: 'remotesVideos',
-	  autoRequestMedia: true
-	});
-
-	webrtc.on('readyToCall', function () {
-	  webrtc.joinRoom('<%= id %>');
-	});
-
-	</script>
-</body>
         <link rel="stylesheet" href="css/bootstrap.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <link rel="stylesheet" href="css/main.css">
