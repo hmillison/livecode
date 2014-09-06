@@ -20,6 +20,7 @@
     <nav class="navbar navbar-default" role="navigation">
         <h2> Live Code </h2>
         <button class="btn" id="copy-button" data-clipboard-text="Copy me!">Copy URL</button>
+        <button class="btn" id="dl-button">Download code</button>
     </nav>
 
 
@@ -114,8 +115,27 @@ $(document).ready(function () {
     $('body').css('height',Number(bodyheight)+Number(editorheight)+'px');
     $('#copy-button').attr('data-clipboard-text', location.href);
 
-    
+    var destroyClickedElement = function(event){
+        document.body.removeChild(event.target);
+    }
+    var saveTextAsFile = function(){      
+        var textToWrite = editor.getValue();
+        var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+        var fileName = prompt("Please enter file name to save as");
+        var fileNameToSaveAs = fileName + ".js";
+        var downloadLink = document.createElement("a");
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "My Hidden Link";
+        window.URL = window.URL || window.webkitURL;
+              
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+    }
 
+    $('#dl-button').click(saveTextAsFile);
 });
 </script>
 

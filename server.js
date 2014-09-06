@@ -9,7 +9,7 @@ var server = require('http').Server(app);
 
 io = require('socket.io')(server);
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 1337;
 
 server.listen(PORT);
 
