@@ -11,6 +11,8 @@
 
 	<video height="300" id="localVideo"></video>
 	<div id="remotesVideos"></div>
+
+
 	<script type="text/javascript">
 	var webrtc = new SimpleWebRTC({
 	  localVideoEl: 'localVideo',
@@ -21,6 +23,7 @@
 	webrtc.on('readyToCall', function () {
 	  webrtc.joinRoom('<%= id %>');
 	});
+
 	</script>
 </body>
 </html>
