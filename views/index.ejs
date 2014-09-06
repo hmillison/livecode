@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title><%= title %></title>
-	<link rel='stylesheet' href='/stylesheets/style.css' />
-	<script src="http://simplewebrtc.com/latest.js"></script> 
-</head>
-<body>
-	<h1><%= title %></h1>
-	<p>Welcome to <%= title %></p>
-
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 	<video height="300" id="localVideo"></video>
 	<div id="remotesVideos"></div>
 
@@ -26,4 +23,38 @@
 
 	</script>
 </body>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+        </nav>
+        <div class="header text-center">
+            <h1> Live Code </h1>
+        </div>
+        <div class="container text-center options">
+            <p>
+              <div class="form-group">
+                  <input type="text" class="form-control" id="username" placeholder="Username">
+              </div>
+            </p>
+            <p>
+              <a href="/chat" class="btn btn-primary btn-lg" role="button">Create</a>
+            </p>
+             <p id="join-container">
+              <button class="btn btn-primary btn-lg" id="join-private" role="button">Join</button>
+            </p>
+            <p>
+              <a href="/list" class="btn btn-primary btn-lg" role="button">Find</a>
+            </p>
+           
+        </div>
+     <script>
+            $('#join-private').click(function(){
+                    var html = '<div class="form-group"><input type="text" class="form-control" id="room-id" placeholder="Enter Room ID"></div>';
+                    $('#join-container').hide().html(html).fadeIn('slow');
+            });
+     </script>
+    </body>
 </html>
