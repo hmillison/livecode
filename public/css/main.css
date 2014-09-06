@@ -14,9 +14,15 @@
 .video-wrapper { 
 height:25%;
 }
+div.subitem a.list-group-item {
+    padding-left: 30px;
+}
 
 video{
   width:240px;
+}
+li #sidebar.list-group #users.list-group.subitem.collapse.in { 
+  margin-bottom: 0px; 
 }
 
 /* login page */

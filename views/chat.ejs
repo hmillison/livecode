@@ -40,26 +40,58 @@
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav">
                             <li>
-                                <div class="btn-group">
-                                  <button type="button" class="btn btn-default dropdown-toggle" id="lang-button" data-toggle="dropdown">
-                                    Select Language <span class="caret"></span>
-                                  </button>
-                                  <ul class="dropdown-menu" id="lang-select" role="menu">
-                                    <li><a href="#" id="C">C/C++</a></li>
-                                    <li><a href="#" id="CSS">CSS</a></li>
-                                    <li><a href="#" id="HTML">HTML</a></li>
-                                    <li><a href="#" id="Java">Java</a></li>
-                                    <li><a href="#" id="Javascript">Javascript</a></li>
-                                    <li><a href="#" id="PHP">PHP</a></li>
-                                    <li><a href="#" id="Python">Python</a></li>
-                                    <li><a href="#" id="Ruby">Ruby</a></li>
-                                  </ul>
+                                <div id="sidebar" class="list-group"> 
+
+                                    <a href="#users" class="list-group-item"  id="lang-button" data-parent="#sidebar">
+                                        <i class="icon-group"></i> Select Language
+                                    </a>
+
+                                    <div id="lang-select" class="list-group subitem collapse">    
+
+                                        <a href="#" id="C" class="list-group-item">
+                                            C/C++
+                                        </a>
+                                        <a href="#" id="CSS" class="list-group-item">
+                                            CSS
+                                        </a>
+                                        <a href="#" id="HTML" class="list-group-item">
+                                            HTML
+                                        </a>
+                                        <a href="#" id="Java" class="list-group-item">
+                                            Java
+                                        </a>
+                                        <a href="#" id="Javascript" class="list-group-item">
+                                            Javascript
+                                        </a>
+                                        <a href="#" id="PHP" class="list-group-item">
+                                            PHP
+                                        </a>
+                                        <a href="#" id="Python" class="list-group-item">
+                                            Python
+                                        </a>
+                                        <a href="#" id="Ruby" class="list-group-item">
+                                            Ruby
+                                        </a>
+
+                                    </div>  
+
+                                    <a href="#articles" class="list-group-item"  data-parent="#sidebar">
+                                        <i class="icon-file-text"></i> Download
+                                        
+                                    </a>
+
+                                    <a id="copy-button" data-clipboard-text="Copy me!" class="list-group-item"  
+                                        data-parent="#sidebar">
+                                        <i class="icon-file-text"></i> Copy URL
+                                    </a>
+
+
+
+
                                 </div>
                             </li>
                             <li>
-                                <button class="btn" id="copy-button" data-clipboard-text="Copy me!">Copy URL</button>
                             </li>
-                            <li>C</li>
                         </ul>
                     </div>
             </div>
@@ -126,9 +158,21 @@ editor.getSession().on('change', function(e){
 });
 
 $('#lang-select').on('click', 'a', function(event){
-    console.log(this.id);
-    editor.getSession().setMode("ace/mode/"+this.id);
-    $('#lang-button').html(this.id + ' <span class="caret"></span>');
+    editor.getSession().setMode("ace/mode/"+this.id.toLowerCase());
+    $('#lang-button').html('<i class="icon-group"></i>' + this.id);
+    $('#lang-select').collapse('hide');
+});
+
+$('#sidebar > a').on('click', function (e) {
+    e.preventDefault();
+
+    if(!$(this).hasClass("active")){
+        var lastActive = $(this).closest("#sidebar").children(".active");
+        lastActive.removeClass("active");
+        lastActive.next('div').collapse('hide');
+        $(this).addClass("active");
+        $(this).next('div').collapse('show');
+    }
 
 });
 
