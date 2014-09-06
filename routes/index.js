@@ -7,6 +7,12 @@ Parse.initialize("Z8S2abxIxh5UXd3m8CNncRGbn97pRXYSi4EQ5qnR", "G4U45T8R74bMLLdcB8
 
 /* GET home page. */
 router.get('/', function(req, res) {
+
+	res.render('index', { title: 'LiveCode'});
+
+});
+
+router.get('/chat', function(req, res) {
 	if(req.query.create === 'true'){
 		var Rooms = Parse.Object.extend('Rooms');
 		var room = new Rooms();
@@ -15,21 +21,17 @@ router.get('/', function(req, res) {
 		  success: function(room) {
 		    
 		    console.log('New object created with objectId: ' + room.id);
-		    res.render('index', { title: 'LiveCode', id:room.id });
+		    res.render('chat', { title: 'LiveCode', id:room.id });
 		  },
-		  error: function(gameScore, error) {
+		  error: function(room, error) {
 		    console.log('Failed to create new object, with error code: ' + error.message);
 		  }
 		});
 	}
 	else{
-		res.render('index', { title: 'LiveCode', id:req.query.id });
+		res.render('chat', { title: 'LiveCode', id:req.query.id });
 	}
-
-});
-
-router.get('/chat', function(req, res) {
-  res.render('chat', { title: 'LiveCode', id:req.query.id });
+  
 });
 
 
