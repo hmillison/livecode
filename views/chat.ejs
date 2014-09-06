@@ -12,12 +12,9 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://simplewebrtc.com/latest.js"></script> 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.Core.min.js"></script>
+    <script src="javascripts/ZeroClipboard.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
 
-
-    </head>
-    <body>
-      
         
 </head>
 <body>
@@ -44,19 +41,24 @@
                         <ul class="sidebar-nav">
                             <li>
                                 <div class="btn-group">
-                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button type="button" class="btn btn-default dropdown-toggle" id="lang-button" data-toggle="dropdown">
                                     Select Language <span class="caret"></span>
                                   </button>
-                                  <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
+                                  <ul class="dropdown-menu" id="lang-select" role="menu">
+                                    <li><a href="#" id="C">C/C++</a></li>
+                                    <li><a href="#" id="CSS">CSS</a></li>
+                                    <li><a href="#" id="HTML">HTML</a></li>
+                                    <li><a href="#" id="Java">Java</a></li>
+                                    <li><a href="#" id="Javascript">Javascript</a></li>
+                                    <li><a href="#" id="PHP">PHP</a></li>
+                                    <li><a href="#" id="Python">Python</a></li>
+                                    <li><a href="#" id="Ruby">Ruby</a></li>
                                   </ul>
                                 </div>
                             </li>
-                            <li>B</li>
+                            <li>
+                                <button class="btn" id="copy-button" data-clipboard-text="Copy me!">Copy URL</button>
+                            </li>
                             <li>C</li>
                         </ul>
                     </div>
@@ -80,6 +82,15 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
+var client = new ZeroClipboard( document.getElementById("copy-button") );
+
+client.on("ready", function( readyEvent ) {
+
+    client.on( "aftercopy", function( event ) {
+        event.target.style.display = "none";
+        alert("Copied text to clipboard: " + event.data["text/plain"]);
+    });
+});
 
 var webrtc = new SimpleWebRTC({
     localVideoEl: 'localVideo',
@@ -113,10 +124,23 @@ editor.getSession().on('change', function(e){
         socket.emit('editorChange', data);
     }
 });
-$(document).ready(function () {
-    ZeroClipboard.config({ swfPath: '/images/ZeroClipboard.swf' });
-    var client = new ZeroClipboard($('#copy-url'));
 
+$('#lang-select').on('click', 'a', function(event){
+    console.log(this.id);
+    editor.getSession().setMode("ace/mode/"+this.id);
+    $('#lang-button').html(this.id + ' <span class="caret"></span>');
+
+});
+
+$(document).ready(function () {
+
+    window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
+    var bodyheight = $('body').css('height').replace('px','');
+    var editorheight = $('#editor').css('height').replace('px','');
+    $('body').css('height',Number(bodyheight)+Number(editorheight)+'px');
+    $('#copy-button').attr('data-clipboard-text', location.href);
+
+    
     window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
 });
 </script>
