@@ -61,7 +61,6 @@ and (max-width : 320px) {
 
 #sidebar-wrapper {
   margin-left: -250px;
-  margin-top:24%;
   left: 250px;
   width: 250px;
   background: #2C3E50;
@@ -94,7 +93,7 @@ and (max-width : 320px) {
         margin:auto;
         width: 50%;
         height:75%;
-        margin-top: 35%;
+        margin-top: 34.25%;
         overflow: scroll;
     }
 
