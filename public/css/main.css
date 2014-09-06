@@ -42,6 +42,8 @@
   width:20%;
 }
 
+
+
 /* Smartphones (portrait) ----------- */
 @media only screen 
 and (max-width : 320px) {
@@ -96,6 +98,19 @@ and (max-width : 320px) {
         margin-top: 34.25%;
         overflow: scroll;
     }
+
+@media (max-width:1300px){
+    #editor{
+      margin-top:37.25%;
+    }
+}
+
+@media (max-width:1200px){
+    #editor{
+      margin-top:39.55%;
+    }
+}
+
 
 @media (max-width:767px) {
 
