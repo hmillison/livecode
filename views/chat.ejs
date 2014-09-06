@@ -99,13 +99,9 @@ editor.getSession().on('change', function(e){
 });
 $(document).ready(function () {
     window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
-
-$(window).resize(function() {
-    var width = $(window).width();
-    console.log(width/30);
-    //$("#editor").css('margin-top',width + '%')
-
-});
+var bodyheight = $('body').css('height').replace('px','');
+    var editorheight = $('#editor').css('height').replace('px','');
+    $('body').css('height',Number(bodyheight)+Number(editorheight)+'px');
 
 });
 </script>
