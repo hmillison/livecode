@@ -13,10 +13,12 @@ router.get('/', function(req, res) {
 });
 
 router.get('/chat', function(req, res) {
-	if(req.query.create === 'true'){
-		var Rooms = Parse.Object.extend('Rooms');
-		var room = new Rooms();
+	var Rooms = Parse.Object.extend('Rooms');
+	var room = new Rooms();
 
+	var roomID;
+
+	if(req.query.create === 'true'){
 		room.save(null, {
 		  success: function(room) {
 		    
@@ -41,17 +43,27 @@ router.get('/chat', function(req, res) {
 		  }
 		});
 	}
+
 	else{
-		res.render('chat', { title: 'LiveCode', id:req.query.id });
+		var query = new Parse.Query(Rooms);
+		query.get(req.query.id, {
+		  	success: function(room) {
+			  	res.render('chat', { title: 'LiveCode', id:req.query.id });
 
-		var nsp = io.of('/'+ req.query.id);
+				var nsp = io.of('/'+ req.query.id);
 
-		nsp.on('connection', function(socket){
-		  	console.log('someone connected');
+				nsp.on('connection', function(socket){
+				  	console.log('someone connected');
 
-		    socket.on('editorChange', function (data) {
-        		nsp.emit('editorCallback', data);
-        	});
+				    socket.on('editorChange', function (data) {
+		        		nsp.emit('editorCallback', data);
+		        	});
+				});
+		    
+		  	},
+		  	error: function(object, error) {
+		  		res.send('Failed to create new object, with error code: ' + error.message);
+		  	}
 		});
 	}
   
