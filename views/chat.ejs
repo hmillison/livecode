@@ -22,8 +22,7 @@
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation">
-        <h2> Live Code </h2>
-        <button class="btn" id="copy-url" data-clipboard-text="Copy me!">Copy URL</button>
+        <a href="/"><h2> Live Code </h2></a>
     </nav>
 
 
@@ -43,7 +42,20 @@
             <div class="row">
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav">
-                            <li>A</li>
+                            <li>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Select Language <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                  </ul>
+                                </div>
+                            </li>
                             <li>B</li>
                             <li>C</li>
                         </ul>
@@ -68,8 +80,6 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
-ZeroClipboard.config({ swfPath: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.swf' });
-var client = new ZeroClipboard($('#copy-url'));
 
 var webrtc = new SimpleWebRTC({
     localVideoEl: 'localVideo',
@@ -93,7 +103,7 @@ socket.on('editorCallback', function(data){
 
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
-editor.getSession().setMode("ace/mode/javascript");
+editor.getSession().setMode("ace/mode/css");
 
 editor.getSession().on('change', function(e){
     if(!changing){
@@ -104,11 +114,10 @@ editor.getSession().on('change', function(e){
     }
 });
 $(document).ready(function () {
-    window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
-var bodyheight = $('body').css('height').replace('px','');
-    var editorheight = $('#editor').css('height').replace('px','');
-    $('body').css('height',Number(bodyheight)+Number(editorheight)+'px');
+    ZeroClipboard.config({ swfPath: '/images/ZeroClipboard.swf' });
+    var client = new ZeroClipboard($('#copy-url'));
 
+    window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
 });
 </script>
 
