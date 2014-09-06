@@ -1,3 +1,4 @@
+console.log('<%= id %>');
 var webrtc = new SimpleWebRTC({
     localVideoEl: 'localVideo',
     remoteVideosEl: 'remotesVideos',
