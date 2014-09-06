@@ -98,11 +98,13 @@ editor.getSession().on('change', function(e){
     }
 });
 $(document).ready(function () {
+    window.history.replaceState('object or string', 'new state', '/chat?id=<%= id %>');
 
 $(window).resize(function() {
     var width = $(window).width();
     console.log(width/30);
     //$("#editor").css('margin-top',width + '%')
+
 });
 
 });

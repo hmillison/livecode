@@ -28,12 +28,13 @@ router.get('/chat', function(req, res) {
 			  	console.log('someone connected');
 
 			  	socket.on('editorChange', function (data) {
-	        		nsp.broadcast.emit('editorCallback', data);
+	        		nsp.emit('editorCallback', data);
 	        	});
 
 			});
 
 		    res.render('chat', { title: 'LiveCode', id:room.id });
+
 		  },
 		  error: function(room, error) {
 		    console.log('Failed to create new object, with error code: ' + error.message);
@@ -49,7 +50,7 @@ router.get('/chat', function(req, res) {
 		  	console.log('someone connected');
 
 		    socket.on('editorChange', function (data) {
-        		nsp.broadcast.emit('editorCallback', data);
+        		nsp.emit('editorCallback', data);
         	});
 		});
 	}
