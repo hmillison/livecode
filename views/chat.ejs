@@ -12,6 +12,10 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://simplewebrtc.com/latest.js"></script> 
+    </head>
+    <body>
+      
+        
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -30,8 +34,6 @@
                 <div id="remotesVideos"></div>
             </div>
         </div>
-    
-       
     
 
     </div>
@@ -62,9 +64,7 @@
 <script src="javascripts/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 
 <script src="/socket.io/socket.io.js"></script>
-<script src="javascripts/main.js"></script>
 <script>
-console.log('<%= id %>');
 var webrtc = new SimpleWebRTC({
     localVideoEl: 'localVideo',
     remoteVideosEl: 'remotesVideos',
@@ -98,19 +98,12 @@ editor.getSession().on('change', function(e){
     }
 });
 $(document).ready(function () {
-    var currentmargin = $('#editor').css('margin-top').replace('px','');
-    updateMargin(currentmargin);
-
 
 $(window).resize(function() {
-    updateMargin(488.0625 );
-});
-
-function updateMargin(currentmargin){
     var width = $(window).width();
-    var newmargin = Number(currentmargin)+((1425-width)*.3);
-    $('#editor').css('margin-top',newmargin + 'px');
-}
+    console.log(width/30);
+    //$("#editor").css('margin-top',width + '%')
+});
 
 });
 </script>

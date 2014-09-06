@@ -4,16 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var app = express();
+var server = require('http').Server(app);
+
+io = require('socket.io')(server);
+
+server.listen(3000);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
-var app = express();
-
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
-
-server.listen(3000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -61,23 +60,14 @@ app.use(function(err, req, res, next) {
     });
 });
 
-io.on('newRoom', function(socket){
-    var nsp = io.of('/my-namespace');
-    nsp.on('connection', function(socket){
-        console.log('someone connected');
-
-    });
-    nsp.emit('hi', 'everyone!');
-}); 
-
-io.on('connection', function (socket) {
-    console.log('new user');
+// io.on('connection', function (socket) {
+//     console.log('new user');
 
 
-    socket.on('editorChange', function (data) {
-        socket.broadcast.emit('editorCallback', data);
-    });
-});
+//     socket.on('editorChange', function (data) {
+//         socket.broadcast.emit('editorCallback', data);
+//     });
+// });
 
 
 module.exports = app;

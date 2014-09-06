@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
 var Parse = require('parse').Parse;
+
 
 Parse.initialize("Z8S2abxIxh5UXd3m8CNncRGbn97pRXYSi4EQ5qnR", "G4U45T8R74bMLLdcB824h3WDJwV1h5ORjrewJtoS");
 
@@ -21,6 +21,18 @@ router.get('/chat', function(req, res) {
 		  success: function(room) {
 		    
 		    console.log('New object created with objectId: ' + room.id);
+		    var path = '/'+ room.id;
+		    var nsp = io.of(path);
+
+			nsp.on('connection', function(socket){
+			  	console.log('someone connected');
+
+			  	socket.on('editorChange', function (data) {
+	        		nsp.broadcast.emit('editorCallback', data);
+	        	});
+
+			});
+
 		    res.render('chat', { title: 'LiveCode', id:room.id });
 		  },
 		  error: function(room, error) {
@@ -30,6 +42,16 @@ router.get('/chat', function(req, res) {
 	}
 	else{
 		res.render('chat', { title: 'LiveCode', id:req.query.id });
+
+		var nsp = io.of('/'+ req.query.id);
+
+		nsp.on('connection', function(socket){
+		  	console.log('someone connected');
+
+		    socket.on('editorChange', function (data) {
+        		nsp.broadcast.emit('editorCallback', data);
+        	});
+		});
 	}
   
 });
