@@ -12,6 +12,9 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://simplewebrtc.com/latest.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.Core.min.js"></script>
+
+
     </head>
     <body>
       
@@ -20,42 +23,42 @@
 <body>
     <nav class="navbar navbar-default" role="navigation">
         <h2> Live Code </h2>
+        <button class="btn" id="copy-url" data-clipboard-text="Copy me!">Copy URL</button>
     </nav>
 
-    <div class="container">
-        <div class="col-md-6 camera">
-            <div class="camera-box">
-                <video height="300" id="localVideo"></video>
-            </div>
-        </div>
-    
-        <div class="col-md-6 camera">
-            <div class="camera-box">
-                <div id="remotesVideos"></div>
-            </div>
-        </div>
-    
 
-    </div>
+    <div class="container-fluid">
 
-    <div class="container">
-        <div id="wrapper">
-            <div id="sidebar-wrapper">
-                <ul class="sidebar-nav">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
+        <div class="col-md-1 col-sm-1 camera">
+            <div class="row">
+                <div class="camera-box">
+                    <video  id="localVideo"></video>
+                </div>
             </div>
-        <div id="page-content-wrapper">
-            <div class="page-content">
-                <div class="container">
-                    <div class="row">
-                            <div id="editor">//Write Your Code Here</div>
+            <div class="row">
+                <div class="camera-box">
+                    <div id="remotesVideos" ></div>
+                </div>
+            </div>
+            <div class="row">
+                    <div id="sidebar-wrapper">
+                        <ul class="sidebar-nav">
+                            <li>A</li>
+                            <li>B</li>
+                            <li>C</li>
+                        </ul>
+                    </div>
+            </div>
+            
+        </div>
+
+        <div class="col-md-9 col-md-offset-3 col-sm-7 col-sm-offset-4" id="editor-container">
+                <div id="page-content-wrapper">
+                    <div class="page-content">
+                        <div id="editor">//Write Your Code Here</div> 
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
 </div>
@@ -65,6 +68,9 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
+ZeroClipboard.config({ swfPath: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.swf' });
+var client = new ZeroClipboard($('#copy-url'));
+
 var webrtc = new SimpleWebRTC({
     localVideoEl: 'localVideo',
     remoteVideosEl: 'remotesVideos',
