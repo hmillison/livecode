@@ -72,8 +72,15 @@ $(document).ready(function () {
 
 $(window).resize(function() {
     var width = $(window).width();
-    console.log(width/30);
-    //$("#editor").css('margin-top',width + '%')
+    var currentmargin = $('#editor').css('margin-top').replace('px','');
+    console.log(currentmargin);
+    if(width < 1425){
+
+        var newmargin = Number(currentmargin)+((1425-width)*.0001);
+        console.log(newmargin);
+        $('#editor').css('margin-top',newmargin + 'px');
+    }
+    //$('#editor').css('margin-top',width + '%')
 });
 
 });

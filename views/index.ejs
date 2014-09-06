@@ -43,6 +43,12 @@
                 </p>
                  <p id="join-container">
                   <button class="btn btn-primary btn-lg" id="join-private" role="button">Join</button>
+                  <div class="input-group hide" id="join-select">
+                    <input type="text" class="form-control" id="room-id" placeholder="Enter Room ID">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
                 </p>
                 <p>
                   <a href="/list" class="btn btn-primary btn-lg" role="button">Find</a>
@@ -51,8 +57,11 @@
         </div>
      <script>
             $('#join-private').click(function(){
-                    var html = '<div class="form-group"><input type="text" class="form-control" id="room-id" placeholder="Enter Room ID"></div>';
-                    $('#join-container').hide().html(html).fadeIn('slow');
+                    $(this).hide();
+                    $('#join-select').removeClass('hide');
+                    $('#join-select').fadeIn('slow', function(){
+
+                    });
             });
      </script>
     </body>

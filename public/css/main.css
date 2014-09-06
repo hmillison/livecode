@@ -42,6 +42,14 @@
   width:20%;
 }
 
+#join-select{
+  width: 20%;
+  margin: auto;
+}
+
+#join-select .btn{
+  width:auto;
+}
 
 
 /* Smartphones (portrait) ----------- */
@@ -99,7 +107,7 @@ and (max-width : 320px) {
         overflow: scroll;
     }
 
-@media (max-width:1300px){
+/*@media (max-width:1300px){
     #editor{
       margin-top:37.25%;
     }
@@ -109,7 +117,7 @@ and (max-width : 320px) {
     #editor{
       margin-top:39.55%;
     }
-}
+}*/
 
 
 @media (max-width:767px) {
