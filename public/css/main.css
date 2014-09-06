@@ -10,21 +10,49 @@
 }
 
 .camera-box{
-	height:310px;
+	height:320px;
   width:500px;
 	padding:5px;
-	margin:auto 20px auto 20px;
+	margin:auto 20px auto 30px;
+  border-bottom: #333 10px solid;
+  border-right: #333 10px solid;
 	background-color: rgba(170,170,170,0.2);
 }
 
 /* login page */
+.header h1{
+  font-size: 50px;
+}
+
+.login{
+  display: inline;
+}
+
 .options input{
-  width:30%;
+  width:20%;
   margin:auto;
   text-align:center;
 }
 
-/* code sidebar */
+.options{
+  padding:1%;
+}
+
+.options .btn{
+  width:20%;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+
+.options .btn, .options input{
+  width:50%;
+}
+
+}
+
+/* code and sidebar */
 #wrapper {
   padding-top:3%;
   padding-left: 250px;
@@ -33,6 +61,7 @@
 
 #sidebar-wrapper {
   margin-left: -250px;
+  margin-top:24%;
   left: 250px;
   width: 250px;
   background: #2C3E50;
@@ -56,6 +85,19 @@
   padding: 0;
 }
 
+  #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin:auto;
+        width: 50%;
+        height:75%;
+        margin-top: 35%;
+        overflow: scroll;
+    }
+
 @media (max-width:767px) {
 
     #wrapper {
@@ -78,3 +120,4 @@
     }
 
 }
+

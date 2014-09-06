@@ -1,70 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
 
         <script src="http://simplewebrtc.com/latest.js"></script> 
-        
     </head>
     <body>
         <nav class="navbar navbar-default" role="navigation">
             <h2> Live Code </h2>
         </nav>
-
-        <div class="container">
-          <div class="col-md-6 camera">
-                <div class="camera-box">
-                        <video height="300" id="localVideo"></video>
-                </div>
-          </div>
-            <div class="col-md-6 camera">
-                 <div class="camera-box">
-                        <div id="remotesVideos"></div>
-                </div>
+    
+    <div class="container">
+        <div class="col-md-6 camera">
+            <div class="camera-box">
+                <video height="300" id="localVideo"></video>
             </div>
-
         </div>
+    
+        <div class="col-md-6 camera">
+            <div class="camera-box">
+                <div id="remotesVideos"></div>
+            </div>
+        </div>
+    
 
-        <div>
-              <div id="wrapper">
-                    <div id="sidebar-wrapper">
-                         <ul class="sidebar-nav">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                         </ul>
-                    </div>
-                    <div id="page-content-wrapper">
-                        <div class="page-content">
-                             <div class="container">
-                                 <div class="row">
-                                   <div class="col-md-12">
-                                     <!-- content of page -->
-                            </div>
-                        </div>
+    <div class="container">
+        <div id="wrapper">
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        <div id="page-content-wrapper">
+            <div class="page-content">
+                <div class="container">
+                    <div class="row">
+                        
+                            <div id="editor">//Write Your Code Here</div>
                     </div>
                 </div>
-           </div>
             </div>
-
         </div>
-     <script type="text/javascript">
-        var webrtc = new SimpleWebRTC({
-           localVideoEl: 'localVideo',
-           remoteVideosEl: 'remotesVideos',
-          autoRequestMedia: true
-         });
+    </div>
 
-        webrtc.on('readyToCall', function () {
-         webrtc.joinRoom('<%= id %>');
-        });
-  </script>
-    </body>
+</div>
+
+
+<script src="javascripts/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="javascripts/main.js"></script>
+
+</body>
 </html>
