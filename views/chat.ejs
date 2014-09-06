@@ -18,7 +18,7 @@
         
 </head>
 <body>
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default navbar-livecode" role="navigation">
         <a href="/"><h2> Live Code </h2></a>
     </nav>
 
@@ -26,14 +26,16 @@
     <div class="container-fluid">
 
         <div class="col-md-1 col-sm-1 camera">
-            <div class="row">
-                <div class="camera-box">
-                    <video  id="localVideo"></video>
+            <div class="camera-container">
+                <div class="row">
+                    <div class="camera-box">
+                        <video  id="localVideo"></video>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="camera-box">
-                    <div id="remotesVideos" ></div>
+                <div class="row">
+                    <div class="camera-box">
+                        <div id="remotesVideos" ></div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -166,13 +168,13 @@ $('#lang-select').on('click', 'a', function(event){
 $('#sidebar > a').on('click', function (e) {
     e.preventDefault();
 
-    if(!$(this).hasClass("active")){
+    
         var lastActive = $(this).closest("#sidebar").children(".active");
         lastActive.removeClass("active");
         lastActive.next('div').collapse('hide');
         $(this).addClass("active");
         $(this).next('div').collapse('show');
-    }
+    
 
 });
 
