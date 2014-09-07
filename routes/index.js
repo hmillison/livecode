@@ -41,9 +41,16 @@ router.post('/topic', function(req, res){
 });
 
 router.get('/chat', function(req, res) {
-	var Rooms = Parse.Object.extend('Rooms');
-	var room = new Rooms();
 
+	var room, Rooms;
+	if(req.query.public === 'true'){
+		Rooms = Parse.Object.extend('Rooms');
+		room = new Rooms();
+	}
+	else{
+		Rooms = Parse.Object.extend('privateRooms');
+		room = new Rooms();
+	}
 	var roomID;
 	if(req.query.create === 'true'){
 		room.set('content', '//Write Your Code Here');
