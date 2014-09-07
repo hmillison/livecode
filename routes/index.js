@@ -12,17 +12,50 @@ router.get('/', function(req, res) {
 
 });
 
+router.get('/list', function(req, res){
+	var Rooms = Parse.Object.extend("Rooms");
+	var query = new Parse.Query(Rooms);
+	query.find({
+		success: function(results){
+			res.render('list', { title: 'LiveCode', rooms:results});
+		},
+		error: function(error){
+			res.send('There was an error loading this page. Please try again.')
+		}
+	});
+
+});
+
+router.post('/topic', function(req, res){
+	var id = req.query.id;
+	var topic = req.query.topic;
+	var Rooms = Parse.Object.extend("Rooms");
+	var query = new Parse.Query(Rooms);
+	query.get(id,{
+		success: function(Rooms){
+			Rooms.set('topic',topic);
+			Rooms.save();
+		}
+	});
+
+});
+
 router.get('/chat', function(req, res) {
 	var Rooms = Parse.Object.extend('Rooms');
 	var room = new Rooms();
 
 	var roomID;
-
 	if(req.query.create === 'true'){
 		room.set('content', '//Write Your Code Here');
+		if(req.query.username){
+			room.set('username', req.query.username);
+		}
+		else
+		{
+			room.set('username', 'guest');
+		}
 		room.save(null, {
 		  success: function(room) {
-		    
 		    console.log('New object created with objectId: ' + room.id);
 		    var path = '/'+ room.id;
 		    var nsp = io.of(path);
@@ -60,7 +93,7 @@ router.get('/chat', function(req, res) {
 
 			});
 
-		    res.render('chat', { title: 'LiveCode', id:room.id , content:room.get('content')});
+		    res.render('chat', { title: 'LiveCode', id:room.id , username:room.get('username'), content:room.get('content')});
 
 		  },
 		  error: function(room, error) {

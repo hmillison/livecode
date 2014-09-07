@@ -1,4 +1,12 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+a{
+    transition: all 0.4s ease 0s;
+
+}
+
+a:hover{
+    text-decoration: none;
+    color: #428bca;
+}
 
 .navbar > *{
   color: #fff;
@@ -24,14 +32,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34495e', end
   overflow: scroll-y;
 }
 
-.camera-box{
-	background-color: rgba(170,170,170,0.2);
-}
 .video-wrapper { 
 height:25%;
 }
 div.subitem a.list-group-item {
     padding-left: 30px;
+    cursor: pointer;
 }
 
 video{
@@ -196,5 +202,47 @@ position: fixed;
       transition: all 0.4s ease 0s;
     }
 
+}
+
+/* rooms list */
+.find-rooms .row{
+  padding: 5%;
+  border-bottom: #333 2px solid;
+}
+
+.find-rooms .row > *{
+}
+.code-room-header { 
+margin-left: -5px; 
+}
+
+.find-rooms .find-cols{
+  padding:1%;
+  padding-left:5%;
+  text-align:center;
+}
+
+.find-rooms .row:first-child{
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.find-rooms .row:last-child{
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px
+}
+
+.find-rooms .row:nth-child(odd){
+  background-color: #34495E;
+}
+
+.find-rooms .row:nth-child(even){
+  background: -moz-linear-gradient(top, #34495e 0%, #34495e 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#34495e), color-stop(100%,#34495e));
+  background: -webkit-linear-gradient(top, #34495e 0%,#34495e 100%);
+  background: -o-linear-gradient(top, #34495e 0%,#34495e 100%);
+  background: -ms-linear-gradient(top, #34495e 0%,#34495e 100%);
+  background: linear-gradient(to bottom, #34495e 0%,#34495e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34495e', endColorstr='#34495e',GradientType=0 );
 }
 

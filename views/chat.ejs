@@ -35,7 +35,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-livecode" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-livecode" role="navigation">
         <a href="/"><h2>Live_Code</h2></a>
     </nav>
 
@@ -107,9 +107,7 @@
                                     <a id="email-button" class="list-group-item" data-parent="#sidebar">
                                         <i class="icon-file-text"></i> Send Invite via Email
                                     </a>
-
-
-
+                                   
                                 </div>
                             </li>
                             <li>
@@ -182,6 +180,10 @@ $('#lang-select').on('click', 'a', function(event){
     editor.getSession().setMode("ace/mode/"+this.id.toLowerCase());
     $('#lang-button').html('<i class="icon-group"></i>' + this.id);
     $('#lang-select').collapse('hide');
+    $.ajax({
+        url: "/topic?id=<%= id %>&topic=" + this.id,
+        type: "POST"
+    })
 });
 
 $('#sidebar > a').on('click', function (e) {
