@@ -12,6 +12,15 @@
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
+            <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
         <nav class="navbar navbar-default" role="navigation">
         </nav>
         <div class="container login">
@@ -20,7 +29,7 @@
                 <div class="header text-center">
                 <h1> Live_Code </h1>
             </div>
-                <form action="/chat">
+                <form action="/chat" id="create-chat">
                 <p>
                   <div class="form-group">
                       <input type="text" class="form-control" name="username" placeholder="Username">
@@ -28,7 +37,12 @@
                 </p>
                 <p>
                   <input type="hidden" name="create" value="true">
-                  <input type="submit" value="Create" class="btn btn-primary btn-lg" role="button">
+                  <input type="hidden" name="public" id="room-type">
+                  <button class="btn btn-primary btn-lg" id="create-btn">Create</button>
+                  <div class="room-type hide">
+                    <input type="submit" class="btn btn-primary btn-lg" id="public-btn" value="Public Room">
+                    <input type="submit" class="btn btn-primary btn-lg" id="private-btn" value="Private Room">
+                </div>
                 </p>
                 </form>
                  <p id="join-container">
@@ -44,9 +58,26 @@
                   <a href="/list" class="btn btn-primary btn-lg" role="button">Find</a>
                 </p>
             </div>
-        </div>
+        </div>2
      <script>
             $(document).ready(function () {
+
+                $('#create-btn').click(function(e){
+                    e.preventDefault();
+                    $(this).fadeOut(function(){
+                         $('.room-type').removeClass('hide');
+                    });
+                })
+
+                $('#public-btn').click(function(){
+                    $('#room-type').val('true');
+                    $('#create-chat').submit();
+                });
+
+                $('#private-btn').click(function(){
+                    $('#room-type').val('false');
+                    $('#create-chat').submit();
+                });
 
                 $('.options').hide().fadeIn(900);
 
@@ -58,8 +89,10 @@
             });
 
             $('#join-private').click(function(){
-                $(this).hide();
-                $('#join-select').removeClass('hide');
+                $(this).fadeOut(function(){
+                    $('#join-select').removeClass('hide');
+                });
+                
             });
      </script>
     </body>
