@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Live Code</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.css">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+                <a href="/"><h2>Live_Code</h2></a>
+        </nav>
+        <div class="find-rooms">
+                <div class="row find-header text-center">
+                    <h3> Open Coderooms </h3>
+                </div>
+            <% for(var i=0;i<rooms.length;i++) {%>
+                    <div class="col-md-4 col-sm-4 text-center room-list">
+                        <% if(rooms[i].get("topic")) {%>
+                            <h4><%= rooms[i].get("topic") %></h4>
+                        <% } else { %>
+                            <h4>Unknown</h4>
+                        <% } %>
+                        <br />
+                        <h4><%= rooms[i].get("username") %></h4>
+                        <br />
+                        <a href="/chat?id=<%= rooms[i].id %>">
+                            <button class="btn btn-primary btn-lg">Go to Coderoom</button>
+                        </a>
+                    </div>
+                     <% } %>   
+                </div>
+        </div>
+     <script>
+            
+     </script>
+    </body>
+</html>

@@ -1,6 +1,6 @@
+
 a{
     transition: all 0.4s ease 0s;
-
 }
 
 a:hover{
@@ -135,23 +135,23 @@ and (max-width : 320px) {
 }
 
 #editor-container { 
-height: 100%;
-position: fixed;
+  height: 100%;
+  position: fixed;
 
 }
 
 
   #editor { 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin:auto; 
-        margin-top: 0px;
-        width: 100%;
-        height:90%;
-        overflow: scroll;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  margin-top: 0px;
+  width: 100%;
+  height: 87%;
+  overflow: scroll-y;
     }
 
 //* @media (max-width:1300px){
@@ -223,6 +223,7 @@ margin-left: -5px;
 }
 
 .find-rooms .row:first-child{
+  color:#000;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
@@ -232,17 +233,15 @@ margin-left: -5px;
   border-bottom-right-radius: 25px
 }
 
-.find-rooms .row:nth-child(odd){
+.find-rooms .room-list{
   background-color: #34495E;
+  border: 10px solid #fff;
+  padding:5%;
+  transition: all 0.4s ease 0s;
 }
 
-.find-rooms .row:nth-child(even){
-  background: -moz-linear-gradient(top, #34495e 0%, #34495e 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#34495e), color-stop(100%,#34495e));
-  background: -webkit-linear-gradient(top, #34495e 0%,#34495e 100%);
-  background: -o-linear-gradient(top, #34495e 0%,#34495e 100%);
-  background: -ms-linear-gradient(top, #34495e 0%,#34495e 100%);
-  background: linear-gradient(to bottom, #34495e 0%,#34495e 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34495e', endColorstr='#34495e',GradientType=0 );
+.room-list:hover{
+  background-color: #2C3E50;
+  color:#000;
 }
 
