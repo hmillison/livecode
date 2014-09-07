@@ -210,22 +210,26 @@ $(document).ready(function () {
     var destroyClickedElement = function(event){
         document.body.removeChild(event.target);
     }
-    var saveTextAsFile = function(){      
-        var textToWrite = editor.getValue();
-        var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+    var saveTextAsFile = function(){
         var fileName = prompt("Please enter file name to save as");
 
-        var fileNameToSaveAs = fileName + ending;
-        var downloadLink = document.createElement("a");
-        downloadLink.download = fileNameToSaveAs;
-        downloadLink.innerHTML = "My Hidden Link";
-        window.URL = window.URL || window.webkitURL;
-              
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.onclick = destroyClickedElement;
-        downloadLink.style.display = "none";
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
+        if(fileName !== null){      
+            var textToWrite = editor.getValue();
+            var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+            var fileName = prompt("Please enter file name to save as");
+
+            var fileNameToSaveAs = fileName + ending;
+            var downloadLink = document.createElement("a");
+            downloadLink.download = fileNameToSaveAs;
+            downloadLink.innerHTML = "My Hidden Link";
+            window.URL = window.URL || window.webkitURL;
+                  
+            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+            downloadLink.onclick = destroyClickedElement;
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+        }
     }
 
     $('#dl-button').click(saveTextAsFile);
